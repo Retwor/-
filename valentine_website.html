@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для моей котёнки</title>
+    <style>
+        body {
+            background-color: #fce4ec;
+            color: #4a148c;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .heart-button {
+            display: inline-block;
+            background-color: #e91e63;
+            color: white;
+            font-size: 18px;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .heart-button:hover {
+            background-color: #c2185b;
+        }
+        .message-box {
+            display: none;
+            background: white;
+            color: #4a148c;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .final-message {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 30px;
+            color: #d81b60;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 50% 80%, 20% 100%, 0% 30%);
+            opacity: 0.8;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Для моей любимой котёнки</h1>
+        <div id="buttons-container"></div>
+        <div class="final-message">Хочу тебя поздравить с этим праздником, котя! Знай, что ты самая лучшая, самая прекрасная! Я тебя очень-очень ценю и люблю 🩷</div>
+    </div>
+
+    <script>
+        const messages = [
+            "Я тобой очень дорожу, котёнок мой",
+            "Ты у меня самая-самая красивая",
+            "Ты самая лучшая",
+            "Горжусь тобой, котя",
+            "Обожаю тебя",
+            "Чмок",
+            "Какая же всё-таки ты милая",
+            "Ты лучше всех, ты моя гордость",
+            "Ты умничка, я в тебя всегда верю",
+            "Ты самая лучшая",
+            "Ты ж моя звёздочка"
+        ];
+
+        const container = document.getElementById("buttons-container");
+
+        messages.forEach(message => {
+            let button = document.createElement("button");
+            button.className = "heart-button";
+            button.innerText = "💖";
+            let messageBox = document.createElement("div");
+            messageBox.className = "message-box";
+            messageBox.innerText = message;
+            
+            button.onclick = () => {
+                messageBox.style.display = messageBox.style.display === "none" ? "block" : "none";
+            };
+
+            container.appendChild(button);
+            container.appendChild(messageBox);
+        });
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            heart.style.backgroundColor = ["#e91e63", "#2196f3", "#8e24aa"][Math.floor(Math.random() * 3)];
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
